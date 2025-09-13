@@ -10,10 +10,17 @@ async function getConfig() {
     return { projectId: 'demo-project', publicDir: 'public' };
   }
 
-  return inquirer.prompt([
-    {
-      name: 'projectId',
-      message: 'Firebase project ID:'
+return inquirer.prompt([
+  {
+    name: 'projectId',
+    message: 'Firebase project ID:',
+    validate: input => {
+      if (!/^[a-z0-9-]+$/.test(input)) {
+        return 'Project ID must contain only lowercase letters, numbers, or dashes';
+      }
+      return true;
+    }
+  },
     },
     {
       name: 'publicDir',
