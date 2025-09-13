@@ -61,10 +61,15 @@ service cloud.firestore {
 
   fs.writeFileSync('firebase.json', JSON.stringify(firebaseJson, null, 2));
   fs.writeFileSync('firestore.rules', firestoreRules + '\n');
+try {
+  fs.writeFileSync('firebase.json', JSON.stringify(firebaseJson, null, 2));
+  fs.writeFileSync('firestore.rules', firestoreRules + '\n');
   fs.writeFileSync('firestore.indexes.json', JSON.stringify(indexes, null, 2) + '\n');
   console.log('Firebase config files created.');
+} catch (error) {
+  console.error('Error creating configuration files:', error.message);
+  process.exit(1);
 }
-
 async function main() {
   const config = await getConfig();
   createFiles(config);
