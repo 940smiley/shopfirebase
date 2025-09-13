@@ -13,6 +13,6 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "inquirer": "^9.3.7"
+    "inquirer": "^12.9.4"
   }
 }
